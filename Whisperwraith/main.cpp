@@ -1,22 +1,16 @@
 #include <iostream>
-#include <string>
-
-#include <sail-c++/sail-c++.h>
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 
 int main(int argc, char* argv[])
 {
-    std::string path = "C:/Users/Jonat/Documents/IMG20230715145826_01.jpg";
-    sail::image image = sail::image(path);
-
+    std::string img_path = "C:/Users/Jonat/Documents/IMG20230715145826_01.jpg";
+    int texWidth, texHeight, texChannels;
+    stbi_uc* pixels = stbi_load(img_path.c_str(), &texWidth, &texHeight, &texChannels, STBI_rgb_alpha);
+    
     std::cout
         << "Size: "
-        << image.width() << 'x' << image.height()
-        << ", bytes per line: "
-        << image.bytes_per_line()
-        << ", pixel format: "
-        << image.pixel_format()
-        << ", pixels: "
-        << image.pixels()
+        << texWidth << 'x' << texHeight
         << std::endl;
 
     return 0;
