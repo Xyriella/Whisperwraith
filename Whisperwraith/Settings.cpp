@@ -153,7 +153,7 @@ std::pair < std::string, float> Settings::processFloatLine(const std::string& li
 std::pair < std::string, std::string> Settings::processStringLine(const std::string& line)
 {
 	std::string key = line.substr(4, line.find('"', 4) - 4);
-	std::string value = line.substr(line.find('"', 4) + 1);
+	std::string value = line.substr(line.find('"', 4) + 2);
 	return { key, value };
 }
 

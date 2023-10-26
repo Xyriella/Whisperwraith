@@ -151,13 +151,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="gl.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Settings.cpp" />
+    <ClCompile Include="ShaderLoader.cpp" />
+    <ClCompile Include="WhisperWraithApp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="Settings.h" />
+    <ClInclude Include="ShaderLoader.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="WhisperWraithApp.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="fragShader.frag" />
