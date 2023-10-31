@@ -4,7 +4,13 @@
 WhisperWraithApp::WhisperWraithApp(GLFWwindow* window, Settings* settings) : window(window), settings(settings)
 {
 	prevTime = glfwGetTime();
-	objects.push_back(new Mesh(ShaderLoader::GetShaderProgram("vertShader.vert", "fragShader.frag")));
+	objects.push_back(new Mesh(ShaderLoader::GetShaderProgram("vertShader.vert", "fragShader.frag"), {0,1,2,1,2,3}, 
+		{
+			{{-1.0f,-1.0f,0.0f},{0.0f, 0.0f}},
+			{{ 1.0f,-1.0f,0.0f},{1.0f, 0.0f}},
+			{{-1.0f, 1.0f,0.0f},{0.0f, 1.0f}},
+			{{ 1.0f, 1.0f,0.0f},{1.0f, 1.0f}}
+		}));
 }
 
 WhisperWraithApp::~WhisperWraithApp()

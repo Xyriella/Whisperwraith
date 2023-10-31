@@ -1,6 +1,6 @@
-si "height" 785
+si "height" 1417
 si "maximised" 1
-si "width" 1059
-si "xpos" 713
-si "ypos" 299
+si "width" 2560
+si "xpos" 0
+si "ypos" 23
 ss "window title" WhisperWraith

@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="gl.c" />
     <ClCompile Include="main.cpp" />
@@ -159,10 +160,12 @@
     <ClCompile Include="WhisperWraithApp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="ShaderLoader.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="utils.h" />
     <ClInclude Include="WhisperWraithApp.h" />
   </ItemGroup>
   <ItemGroup>

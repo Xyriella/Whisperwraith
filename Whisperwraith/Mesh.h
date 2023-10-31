@@ -2,20 +2,24 @@
 #include <glad/gl.h>
 #include <glm/glm.hpp>
 #include <vector>
+#include "utils.h"
 
 class Mesh
 {
 public:
-	Mesh(GLuint program);
+	Mesh(const GLuint& program, const std::vector<int>& indices, const std::vector<Vertex>& vertices);
 	void tick(float deltaTime);
 	void render();
 private:
 public:
 private:
 	GLuint VBO;
+	GLuint IBO;
 	GLuint program;
-	float scale;
-	GLuint scaleUniformLoc;
-	std::vector<glm::vec3> Vertices;
+	GLuint transformLoc;
+
+	std::vector<Vertex> vertices;
+	std::vector<int> indices;
+	Transform transform;
 };
 
