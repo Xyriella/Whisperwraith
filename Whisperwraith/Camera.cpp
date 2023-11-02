@@ -2,7 +2,7 @@
 #include "glm/ext/matrix_transform.hpp"
 #include <glm/ext/matrix_clip_space.hpp>
 
-Camera::Camera(float aspectRatio, float FOV) : aspectRatio(aspectRatio), FOV(FOV)
+Camera::Camera(const float& aspectRatio, const float& FOV, const float& minPitchDegrees, const float& maxPitchDegrees) : aspectRatio(aspectRatio), FOV(FOV)
 {
 	centre = { 0.0f, 0.0f, 0.0f };
 	distance = 10.0f;
@@ -10,6 +10,8 @@ Camera::Camera(float aspectRatio, float FOV) : aspectRatio(aspectRatio), FOV(FOV
 	farPlane = 1000.0f;
 	yaw = 0.0f;
 	pitch = glm::pi<float>() / 2.0f;
+	setMinPitchDegrees(minPitchDegrees);
+	setMaxPitchDegrees(maxPitchDegrees);
 	updateProjectionMatrix();
 	updateViewMatrix();
 }
@@ -63,6 +65,51 @@ void Camera::addDistance(const float& offset)
 void Camera::setCentre(const glm::vec3& newCentre)
 {
 	centre = newCentre;
+	updateViewMatrix();
+}
+
+void Camera::setRotation(const float& newYaw, const float& newPitch)
+{
+	yaw = newYaw;
+	pitch = glm::clamp(newPitch, minPitch, maxPitch);
+	updateViewMatrix();
+}
+
+void Camera::setYawDegrees(const float& newYaw)
+{
+	yaw = newYaw * glm::pi<float>() / 180.0f;
+	updateViewMatrix();
+}
+
+void Camera::setPitchDegrees(const float& newPitch)
+{
+	pitch = glm::clamp(newPitch * glm::pi<float>() / 180.0f, minPitch, maxPitch);
+	updateViewMatrix();
+}
+
+void Camera::addYaw(const float& yawOffset)
+{
+	yaw += yawOffset;
+	updateViewMatrix();
+}
+
+void Camera::addPitch(const float& pitchOffset)
+{
+	pitch = glm::clamp(pitch + pitchOffset, minPitch, maxPitch);
+	updateViewMatrix();
+}
+
+void Camera::setMaxPitchDegrees(const float& newMaxPitch)
+{
+	maxPitch = glm::max(minPitch + 0.01f, newMaxPitch);
+	pitch = glm::clamp(pitch, minPitch, maxPitch);
+	updateViewMatrix();
+}
+
+void Camera::setMinPitchDegrees(const float& newMinPitch)
+{
+	minPitch = glm::min(maxPitch + 0.01f, newMinPitch);
+	pitch = glm::clamp(pitch, minPitch, maxPitch);
 	updateViewMatrix();
 }
 
