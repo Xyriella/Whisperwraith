@@ -111,7 +111,7 @@ void Settings::loadSettings()
 				std::cerr << e.what() << std::endl;
 			}
 		}
-		else if (lineType == "sg") {
+		else if (lineType == "sf") {
 			try {
 				floatSettings.emplace(processFloatLine(line));
 			}

@@ -3,7 +3,7 @@
 class Camera
 {
 public:
-	Camera(const float& aspectRatio, const float& FOV = 103.0f, const float& minPitchDegrees = 0.0f, const float& maxPitchDegrees = 89.9f);
+	Camera(const float& aspectRatio, const float& FOV = 103.0f, const float& minPitchDegrees = -89.9f, const float& maxPitchDegrees = 0.0f);
 	glm::mat4 getViewMatrix();
 	glm::mat4 getProjectionMatrix();
 
@@ -36,5 +36,6 @@ private:
 	float nearPlane;
 	float farPlane;
 	float maxPitch, minPitch;
+	float maxDistance, minDistance;
 };
 

@@ -7,29 +7,30 @@
 
 Settings* settings;
 int width, height, xpos, ypos;
+WhisperWraithApp* app;
 
 void error_callback(int error, const char* description) {
 	std::cerr << "Error: " << description << std::endl;
 }
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-
+	app->handleKey(window, key, scancode, action, mods);
 }
 
 void text_input_callback(GLFWwindow* window, unsigned int codepoint) {
-
+	app->handleText(window, codepoint);
 }
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
-
+	app->handleMouseButton(window, button, action, mods);
 }
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
-
+	app->handleScroll(window, xoffset, yoffset);
 }
 
 void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos) {
-
+	app->handleCursorPos(window, xpos, ypos);
 }
 
 void window_pos_callback(GLFWwindow* window, int newxpos, int newypos) {
@@ -73,7 +74,11 @@ int main() {
 	glfwSetCursorPosCallback(window, cursor_pos_callback);
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 
-	WhisperWraithApp* app = new WhisperWraithApp(window, settings);
+	glFrontFace(GL_CW);
+	glCullFace(GL_BACK);
+	glEnable(GL_CULL_FACE);
+
+	app = new WhisperWraithApp(window, settings);
 	//Main loop
 	while (!glfwWindowShouldClose(window)) {
 		glfwGetFramebufferSize(window, &width, &height);

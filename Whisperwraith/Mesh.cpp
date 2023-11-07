@@ -27,9 +27,11 @@ void Mesh::tick(float deltaTime)
 	
 }
 
-void Mesh::render()
+void Mesh::render(Camera& camera)
 {
-	glm::mat4 transform = this->transform.getModelMatrix();
+	glm::mat4 viewMatrix = camera.getViewMatrix();
+	glm::mat4 projectionMatrix = camera.getProjectionMatrix();
+	glm::mat4 transform = projectionMatrix * viewMatrix * this->transform.getModelMatrix();
 
 	glUseProgram(program);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);

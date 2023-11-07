@@ -13,8 +13,8 @@ struct Transform {
 	glm::vec3 scale = { 1.0f, 1.0f, 1.0f };
 
 	glm::mat4 getModelMatrix() {
-		glm::mat4 translateMat = glm::translate(glm::mat4(), position);
-		glm::mat4 scaleMat = glm::scale(glm::mat4(), scale);
+		glm::mat4 translateMat = glm::translate(glm::identity<glm::mat4>(), position);
+		glm::mat4 scaleMat = glm::scale(glm::identity<glm::mat4>(), scale);
 		glm::mat4 rotationMat = glm::yawPitchRoll(rotation.y, rotation.x, rotation.z);
 		return translateMat * rotationMat * scaleMat;
 	}

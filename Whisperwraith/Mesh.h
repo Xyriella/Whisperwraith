@@ -3,13 +3,14 @@
 #include <glm/glm.hpp>
 #include <vector>
 #include "utils.h"
+#include "Camera.h"
 
 class Mesh
 {
 public:
 	Mesh(const GLuint& program, const std::vector<int>& indices, const std::vector<Vertex>& vertices);
 	void tick(float deltaTime);
-	void render();
+	void render(Camera& camera);
 private:
 public:
 private:

@@ -1,6 +1,8 @@
-si "height" 1417
+si "height" 400
 si "maximised" 1
-si "width" 2560
-si "xpos" 0
-si "ypos" 23
+si "width" 544
+si "xpos" 1986
+si "ypos" 1001
+sf "mouse sensitivity" 0.002000
+sf "scroll sensitivity" 0.100000
 ss "window title" WhisperWraith
