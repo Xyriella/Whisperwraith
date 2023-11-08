@@ -18,6 +18,8 @@ private:
 	GLuint IBO;
 	GLuint program;
 	GLuint transformLoc;
+	GLuint texID;
+	GLuint samplerLoc;
 
 	std::vector<Vertex> vertices;
 	std::vector<int> indices;

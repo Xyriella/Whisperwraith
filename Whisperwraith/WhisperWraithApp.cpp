@@ -10,21 +10,21 @@ WhisperWraithApp::WhisperWraithApp(GLFWwindow* window, Settings* settings) : win
 		{
 			//Top
 			2,6,7,
-			2,3,7,
+			2,7,3,
 			//Bottom
-			0,4,5,
+			0,5,4,
 			0,1,5,
 			//Left
-			0,2,6,
+			0,6,2,
 			0,4,6,
 			//Right Done
 			1,3,7,
-			1,5,7,
+			1,7,5,
 			//Front Done
 			0,2,3,
-			0,1,3,
+			0,3,1,
 			//Back
-			4,6,7,
+			4,7,6,
 			4,5,7
 		},
 		{

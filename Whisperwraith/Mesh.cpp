@@ -2,10 +2,11 @@
 #include "glm/ext/matrix_transform.hpp"
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
+#include "TextureManager.h"
 
 Mesh::Mesh(const GLuint& program, const std::vector<int>& indices, const std::vector<Vertex>& vertices) : program(program), vertices(vertices), indices(indices)
 {
-
+	texID = TextureManager::getTextureFromFile("Textures/textTex.jpg");
 	transform = { {0.0f, 0.0f, 0.0f},{0.0f, 0.0f,0.0f},{1.0f, 1.0f, 1.0f} };
 
 	glGenBuffers(1, &VBO);
@@ -15,9 +16,7 @@ Mesh::Mesh(const GLuint& program, const std::vector<int>& indices, const std::ve
 	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * vertices.size(), vertices.data(), GL_STATIC_DRAW);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * indices.size(), indices.data(), GL_STATIC_DRAW);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)12);
-
+	samplerLoc = glGetUniformLocation(program, "sampler");
 	transformLoc = glGetUniformLocation(program, "transform");
 	assert(transformLoc != 0xFFFFFFFF);
 }
@@ -38,8 +37,15 @@ void Mesh::render(Camera& camera)
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
 
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)12);
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texID);
+
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, &transform[0][0]);
-	
+	glUniform1i(samplerLoc, 0);
+
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
 
 	glDisableVertexAttribArray(0);
